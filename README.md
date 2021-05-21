@@ -1,0 +1,2 @@
+# getmaplocation
+get map location
