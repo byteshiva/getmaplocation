@@ -1,0 +1,7 @@
+- https://www.tutorialspoint.com/how-to-concatenate-two-strings-in-python
+- https://stackoverflow.com/questions/13331698/how-to-apply-a-function-to-two-columns-of-pandas-dataframe
+- https://github.com/TheAlgorithms/Python
+- https://stackoverflow.com/questions/31414481/new-column-with-coordinates-using-geopy-pandas
+- https://pypi.org/project/geopy/
+- https://pandas.pydata.org/pandas-docs/stable/index.html
+- https://pypi.org/project/pandas-usaddress/
