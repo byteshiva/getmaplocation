@@ -35,3 +35,29 @@ print(df)
 # csv_file.to_json("data.json", orient = "records", date_format = "epoch", double_precision = 10, force_ascii = True, date_unit = "ms", default_handler = None)
 
 df.to_json('file.json', orient='records')
+
+
+
+
+# def calculator(operation, value1, value2):
+#     switcher = {
+#        "house": lambda v1, v2: {"Name":v1},
+
+#        "/": lambda v1, v2: v1/v2,
+
+#        "+": lambda v1, v2: v1+v2,
+
+#        "-": lambda v1, v2: v1-v2,
+#     }
+#     return switcher.get(operation)(value1, value2)
+
+
+
+# ---
+# [('the book club', 'house'), ('100-106', 'house_number'), ('leonard st', 'road'), ('shoreditch', 'suburb'), ('london', 'city'), ('greater london', 'state_district'), ('ec2a 4rh', 'postcode'), ('united kingdom', 'country')]
+
+# "Name": "Stunning Victorian",
+# "Address__c": "18 Henry St",
+# "City__c": "Cambridge",
+# "State__c": "MA",
+# "Zip__c": "01742",

@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 from geopy.geocoders import Nominatim
+import getlocation as gl
 
 geolocator = Nominatim(user_agent="GetLoc")
 
@@ -14,4 +15,6 @@ df = realtyStateMapsData[["Title","Lat","Lon"]].head(20)
 
 ## To speed up the compute, run in parallel using threads
 df['city_coord'] = df.apply(lambda x: "%s %s"%(x['Lat'], x['Lon']) ,axis=1).apply(lambda y : geolocator.geocode(y).address)
+df['unfamilar_object'] = df.apply(lambda x: "%s %s"%(x['Lat'], x['Lon']) ,axis=1).apply(lambda y : gl.getPropertiesSubObject(y))
+# print(tr)
 df.to_json('file.json', orient='records')
