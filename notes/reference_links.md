@@ -5,3 +5,6 @@
 - https://pypi.org/project/geopy/
 - https://pandas.pydata.org/pandas-docs/stable/index.html
 - https://pypi.org/project/pandas-usaddress/
+- https://stackoverflow.com/questions/28397847/most-straightforward-way-to-cache-geocoding-data
+- https://nominatim.org/release-docs/develop/develop/Import/
+- 

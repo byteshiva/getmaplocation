@@ -1,5 +1,4 @@
 from geopy.geocoders import Nominatim
-from numpy import TooHardError
 from postal.parser import parse_address
 from libs import cachedgeo as cg
 

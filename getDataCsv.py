@@ -16,4 +16,4 @@ df = realtyStateMapsData[["Title","Lat","Lon"]].head(25)
 df['city_coord'] = df.apply(lambda x: "%s %s"%(x['Lat'], x['Lon']) ,axis=1).apply(lambda y :cg.validateCache(y))
 df['unfamilar_object'] = df.apply(lambda x: "%s %s"%(x['Lat'], x['Lon']) ,axis=1).apply(lambda y : gl.getPropertiesSubObject(y))
 
-df.to_json('file.json', orient='records')
+df.to_json('./data/json/file.json', orient='records')

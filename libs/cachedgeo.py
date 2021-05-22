@@ -15,32 +15,12 @@ class Cache(object):
                    ')')
        conn.commit()
 
-    def address_cached(self, address):
-        cur = self.conn.cursor()
-        cur.execute('SELECT location FROM Geo WHERE address=?', (address,))
-        res = cur.fetchone()
-        if res is None: return False
-        return pickle.loads(res[0])
-
     def latlong_cached(self, latlong):
         cur = self.conn.cursor()
         cur.execute('SELECT location FROM Geo WHERE latlong=?', (latlong,))
         res = cur.fetchone()
         if res is None: return False
         return pickle.loads(res[0])
-
-    def address_cached(self, address):
-        cur = self.conn.cursor()
-        cur.execute('SELECT location FROM Geo WHERE address=?', (address,))
-        res = cur.fetchone()
-        if res is None: return False
-        return pickle.loads(res[0])
-
-    def save_to_cache(self, address, location):
-        cur = self.conn.cursor()
-        cur.execute('INSERT INTO Geo(address, location) VALUES(?, ?)',
-                    (address, sqlite3.Binary(pickle.dumps(location, -1))))
-        self.conn.commit()
 
     def save_to_cache_latlong(self, latlong, location):
         cur = self.conn.cursor()
