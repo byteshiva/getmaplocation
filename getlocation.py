@@ -1,7 +1,7 @@
 from geopy.geocoders import Nominatim
 from numpy import TooHardError
 from postal.parser import parse_address
-# from postal.expand import expand_address
+from libs import cachedgeo as cg
 
 def getGeoObj(key, value):
     switcher = {
@@ -20,10 +20,8 @@ def getGeoObj(key, value):
 
 def getPropertiesSubObject(latlong):
     obj = {}
-    geolocator = Nominatim(user_agent="GetLoc")
-    location = geolocator.geocode(latlong)
-    # location = geolocator.geocode("-27.435222, 153.065364")
-    addrdetails = parse_address(location.address)
+    location_addr = cg.validateCache(latlong)
+    addrdetails = parse_address(location_addr)
 
     for sublist in addrdetails:
         if(sublist[1] == 'road' and 'Address__c' in obj):

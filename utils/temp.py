@@ -61,3 +61,25 @@ df.to_json('file.json', orient='records')
 # "City__c": "Cambridge",
 # "State__c": "MA",
 # "Zip__c": "01742",
+
+## To speed up the compute, run in parallel using threads
+# df['city_coord'] = df.apply(lambda x: "%s %s"%(x['Lat'], x['Lon']) ,axis=1).apply(lambda y : geolocator.geocode(y).address)
+# df['unfamilar_object'] = df.apply(lambda x: "%s %s"%(x['Lat'], x['Lon']) ,axis=1).apply(lambda y : gl.getPropertiesSubObject(y))
+# print(tr)
+
+# from postal.expand import expand_address
+
+# geolocator = Nominatim(user_agent="GetLoc")
+# location = geolocator.geocode(latlong)
+# location = cg.validateCache(latlong)
+# location = geolocator.geocode("-27.435222, 153.065364")
+
+# address = '44, Seventh Avenue, Swan Hill, Windsor, Brisbane City, Queensland, 4030, Australia'
+# location = cache.address_cached(address)
+
+# if __name__ == '__main__':
+#     latlong = "-27.435356,153.025818"
+#     validateCache(latlong)
+
+# g = geopy.geocoders.GoogleV3()
+# cache.save_to_cache(addr, location_from_nominatim)
