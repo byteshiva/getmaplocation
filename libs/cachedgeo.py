@@ -1,25 +1,27 @@
 import geopy
 import pickle
 import sqlite3
-from geopy.geocoders import Nominatim
+# from geopy.geocoders import Nominatim
+
 
 class Cache(object):
     def __init__(self, fn='cache.db'):
-       self.conn = conn = sqlite3.connect(fn)
-       cur = conn.cursor()
-       cur.execute('CREATE TABLE IF NOT EXISTS '
-                   'Geo ( '
-                   'address STRING PRIMARY KEY, '
-                   'latlong STRING, '
-                   'location BLOB '
-                   ')')
-       conn.commit()
+        self.conn = conn = sqlite3.connect(fn)
+        cur = conn.cursor()
+        cur.execute('CREATE TABLE IF NOT EXISTS '
+                    'Geo ( '
+                    'address STRING PRIMARY KEY, '
+                    'latlong STRING, '
+                    'location BLOB '
+                    ')')
+        conn.commit()
 
     def latlong_cached(self, latlong):
         cur = self.conn.cursor()
         cur.execute('SELECT location FROM Geo WHERE latlong=?', (latlong,))
         res = cur.fetchone()
-        if res is None: return False
+        if res is None:
+            return False
         return pickle.loads(res[0])
 
     def save_to_cache_latlong(self, latlong, location):
@@ -27,6 +29,7 @@ class Cache(object):
         cur.execute('INSERT INTO Geo(latlong, location) VALUES(?, ?)',
                     (latlong, sqlite3.Binary(pickle.dumps(location, -1))))
         self.conn.commit()
+
 
 def validateCache(latlon):
     # run a small test in this case
@@ -45,7 +48,7 @@ def validateCache(latlon):
         print('was not cached, looking up and caching now')
         geolocator = geopy.Nominatim(user_agent="GetLoc")
         location_from_nominatim = geolocator.geocode(latlong)
-        addr = location_from_nominatim.address
+        # addr = location_from_nominatim.address
         address_location = location_from_nominatim.address
         # print('found as: {}\n{}'.format(location_from_nominatim, pprint.pformat(location_from_nominatim.raw)))
 

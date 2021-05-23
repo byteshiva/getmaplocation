@@ -1,21 +1,23 @@
-from geopy.geocoders import Nominatim
+# from geopy.geocoders import Nominatim
 from postal.parser import parse_address
 from libs import cachedgeo as cg
 
+
 def getGeoObj(key, value):
     switcher = {
-       "house":  lambda value: {"Name":value},
-       "suburb":  lambda value: "",
-       "country":  lambda value: "",
-       "house_number":  lambda value: {"Address__c":value},
-       "city":  lambda value: {"City__c":value},
-       "road":   lambda value: {"Address__c":value},
-       "state":   lambda value: {"State__c":value},
-       "state_district":   lambda value: {"State__c":value},
-       "postcode":   lambda value: {"Zip__c":value},
-    #  "country":   lambda value: {"Country__c":value},
+       "house": lambda value: {"Name": value},
+       "suburb": lambda value: "",
+       "country": lambda value: "",
+       "house_number": lambda value: {"Address__c": value},
+       "city": lambda value: {"City__c": value},
+       "road": lambda value: {"Address__c": value},
+       "state": lambda value: {"State__c": value},
+       "state_district": lambda value: {"State__c": value},
+       "postcode": lambda value: {"Zip__c": value}
+       #  "country": lambda value: {"Country__c": value},
     }
     return switcher.get(key)(value)
+
 
 def getPropertiesSubObject(latlong):
     obj = {}
@@ -28,5 +30,4 @@ def getPropertiesSubObject(latlong):
                 obj.update(getGeoObj(sublist[1], obj['Address__c'] + " " + sublist[0]))
         else:
             obj.update(getGeoObj(sublist[1], sublist[0]))
-    
     return obj
